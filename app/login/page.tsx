@@ -15,10 +15,8 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
     const supabase = createClient()
-
-    // Debug: Check if env vars are loaded
-    console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL ? "Loaded" : "Missing")
-    console.log("Supabase URL Value (partial):", process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 10) + "...")
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const isConfigured = supabaseUrl && !supabaseUrl.includes("placeholder")
 
 
     const handleLogin = async (e: React.FormEvent) => {
@@ -98,6 +96,13 @@ export default function LoginPage() {
                             Esqueci minha senha
                         </Link>
                     </div>
+                    {!isConfigured && (
+                        <div className="mt-4 rounded-md bg-destructive/15 p-3 text-xs text-destructive">
+                            <strong>Erro de Configuração:</strong><br />
+                            Variáveis de ambiente do Supabase não detectadas.<br />
+                            URL: {supabaseUrl || "Não definida"}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
