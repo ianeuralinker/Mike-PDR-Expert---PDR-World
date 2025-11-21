@@ -1,0 +1,28 @@
+# Dependências
+node_modules
+.pnp
+.pnp.js
+
+# Testes e Logs
+coverage
+.nyc_output
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de sistema do Next.js
+.next/
+out/
+build/
+dist/
+
+# Variáveis de Ambiente (NUNCA suba senhas pro GitHub)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
