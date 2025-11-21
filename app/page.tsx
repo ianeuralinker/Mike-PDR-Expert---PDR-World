@@ -1,52 +1,136 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { HeroSlideshow } from "@/components/hero-slideshow"
 import { NewsletterForm } from "@/components/newsletter-form"
+import { CheckCircle2, Shield, Clock, Award } from "lucide-react"
 
 export default function Home() {
     return (
-        <div className="flex flex-col min-h-screen">
-            <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
-                <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
-                    <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-                        Domine a Arte do Martelinho de Ouro
-                    </h1>
-                    <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-                        Aprenda técnicas avançadas de funilaria artesanal, restaure carros clássicos e modernos, e transforme sua paixão em um negócio lucrativo.
-                    </p>
-                    <div className="space-x-4">
-                        <Button size="lg" asChild>
-                            <Link href="/galeria">Ver Galeria</Link>
-                        </Button>
-                        <Button size="lg" variant="outline" asChild>
-                            <Link href="/blog">Ler o Blog</Link>
-                        </Button>
+        <div className="flex min-h-screen flex-col">
+            {/* Hero Slideshow */}
+            <HeroSlideshow />
+
+            {/* Features Section */}
+            <section className="container py-16 md:py-24">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="flex flex-col items-center text-center space-y-3 p-6 rounded-lg bg-dark-50 border border-dark-100 hover:border-primary transition-colors">
+                        <div className="p-4 rounded-full bg-primary/10">
+                            <CheckCircle2 className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-lg text-white">Sem Pintura</h3>
+                        <p className="text-white/70 text-sm">
+                            Preserva a pintura original de fábrica
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col items-center text-center space-y-3 p-6 rounded-lg bg-dark-50 border border-dark-100 hover:border-primary transition-colors">
+                        <div className="p-4 rounded-full bg-primary/10">
+                            <Clock className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-lg text-white">Rápido e Eficiente</h3>
+                        <p className="text-white/70 text-sm">
+                            Serviço rápido sem comprometer qualidade
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col items-center text-center space-y-3 p-6 rounded-lg bg-dark-50 border border-dark-100 hover:border-primary transition-colors">
+                        <div className="p-4 rounded-full bg-primary/10">
+                            <Shield className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-lg text-white">Garantia</h3>
+                        <p className="text-white/70 text-sm">
+                            Mantém a garantia de fábrica intacta
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col items-center text-center space-y-3 p-6 rounded-lg bg-dark-50 border border-dark-100 hover:border-primary transition-colors">
+                        <div className="p-4 rounded-full bg-primary/10">
+                            <Award className="h-8 w-8 text-primary" />
+                        </div>
+                        <h3 className="font-semibold text-lg text-white">Expertise</h3>
+                        <p className="text-white/70 text-sm">
+                            20+ anos de experiência comprovada
+                        </p>
                     </div>
                 </div>
             </section>
 
-            <section className="container py-8 md:py-12 lg:py-24 bg-muted/50 rounded-3xl my-8">
-                <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-                    <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
-                        Resultados que Falam
-                    </h2>
-                    <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-                        Confira nossa galeria de antes e depois e veja a mágica do Martelinho de Ouro.
-                    </p>
-                    <Button size="lg" className="mt-4" asChild>
-                        <Link href="/galeria">Explorar Galeria Completa</Link>
-                    </Button>
+            {/* About Section */}
+            <section className="bg-dark-400 py-16 md:py-24">
+                <div className="container">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div className="space-y-6">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+                                <span className="text-primary">Especialistas</span>
+                                <br />
+                                <span className="text-white">em PDR</span>
+                            </h2>
+                            <p className="text-white/80 text-lg">
+                                PDR (Paintless Dent Repair) é a técnica mais avançada e não invasiva para
+                                remoção de amassados. Restauramos o metal à sua forma original sem
+                                comprometer a pintura de fábrica.
+                            </p>
+                            <ul className="space-y-3">
+                                <li className="flex items-center gap-3 text-white/80">
+                                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                                    Preservação do valor de revenda
+                                </li>
+                                <li className="flex items-center gap-3 text-white/80">
+                                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                                    Processo ecologicamente correto
+                                </li>
+                                <li className="flex items-center gap-3 text-white/80">
+                                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                                    Resultados garantidos
+                                </li>
+                            </ul>
+                            <div className="pt-4">
+                                <Button size="lg" className="bg-primary hover:bg-primary-600 text-dark-300 font-semibold">
+                                    Conheça Nossos Serviços
+                                </Button>
+                            </div>
+                        </div>
+                        <div className="bg-dark-200 rounded-lg p-8 aspect-square flex items-center justify-center">
+                            <p className="text-white/50 text-center">
+                                [Imagem do processo PDR]
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section id="newsletter" className="container py-8 md:py-12 lg:py-24">
-                <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-                    <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
-                        Fique por dentro
+            {/* Gallery Preview */}
+            <section className="container py-16 md:py-24">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                        <span className="text-primary">Nosso</span> <span className="text-white">Trabalho</span>
                     </h2>
-                    <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-                        Receba dicas exclusivas e seja o primeiro a saber sobre novos cursos e workshops.
+                    <p className="text-white/70 text-lg max-w-2xl mx-auto">
+                        Confira alguns dos resultados que alcançamos com a técnica PDR
                     </p>
-                    <NewsletterForm />
+                </div>
+                <div className="text-center">
+                    <Link href="/galeria">
+                        <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-dark-300">
+                            Ver Galeria Completa
+                        </Button>
+                    </Link>
+                </div>
+            </section>
+
+            {/* Newsletter */}
+            <section id="newsletter" className="bg-dark-400 py-16 md:py-24">
+                <div className="container">
+                    <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+                            <span className="text-primary">Fique por</span> <span className="text-white">dentro</span>
+                        </h2>
+                        <p className="text-white/70 text-lg max-w-[85%]">
+                            Receba dicas exclusivas sobre cuidados automotivos e seja o primeiro a
+                            saber sobre novos serviços e promoções.
+                        </p>
+                        <NewsletterForm />
+                    </div>
                 </div>
             </section>
         </div>

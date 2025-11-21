@@ -1,40 +1,80 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { Search, User, Phone } from "lucide-react"
 
 export function SiteHeader() {
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-14 items-center">
-                <div className="mr-4 hidden md:flex">
-                    <Link href="/" className="mr-6 flex items-center space-x-2">
-                        <span className="hidden font-bold sm:inline-block">
-                            MIKE PDR EXPERT
-                        </span>
-                    </Link>
-                    <nav className="flex items-center space-x-6 text-sm font-medium">
-                        <Link href="/blog" className="transition-colors hover:text-foreground/80 text-foreground/60">
-                            Blog
+        <header className="sticky top-0 z-50 w-full border-b border-dark-50 bg-dark-300 backdrop-blur supports-[backdrop-filter]:bg-dark-300/95">
+            {/* Top Bar */}
+            <div className="border-b border-dark-50 bg-dark-400">
+                <div className="container flex h-10 items-center justify-between text-sm">
+                    <p className="text-white/70">
+                        Restauração Profissional de Amassados sem Pintura
+                    </p>
+                    <div className="flex items-center gap-4">
+                        <Link href="tel:+5511999999999" className="flex items-center gap-2 text-white/70 hover:text-primary transition-colors">
+                            <Phone className="h-4 w-4" />
+                            <span className="hidden sm:inline">(11) 99999-9999</span>
                         </Link>
-                        <Link href="/galeria" className="transition-colors hover:text-foreground/80 text-foreground/60">
-                            Galeria
+                        <Link href="/login" className="flex items-center gap-1 text-white/70 hover:text-primary transition-colors">
+                            <User className="h-4 w-4" />
+                            <span className="hidden sm:inline">Minha Conta</span>
                         </Link>
-                        <Link href="/sobre" className="transition-colors hover:text-foreground/80 text-foreground/60">
-                            Sobre
-                        </Link>
-                        <Link href="/contato" className="transition-colors hover:text-foreground/80 text-foreground/60">
-                            Contato
-                        </Link>
-                    </nav>
-                </div>
-                <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-                    <div className="w-full flex-1 md:w-auto md:flex-none">
-                        {/* Search or other items */}
                     </div>
-                    <nav className="flex items-center">
-                        <Button variant="ghost" asChild>
-                            <Link href="/login">Login</Link>
-                        </Button>
-                    </nav>
+                </div>
+            </div>
+
+            {/* Main Header */}
+            <div className="container flex h-20 items-center justify-between">
+                {/* Logo */}
+                <Link href="/" className="flex items-center space-x-2">
+                    <Image
+                        src="/logo.png"
+                        alt="Mike PDR Expert"
+                        width={180}
+                        height={60}
+                        className="h-12 w-auto"
+                        priority
+                    />
+                </Link>
+
+                {/* Navigation */}
+                <nav className="hidden md:flex items-center gap-8">
+                    <Link
+                        href="/"
+                        className="text-white hover:text-primary transition-colors font-medium"
+                    >
+                        Início
+                    </Link>
+                    <Link
+                        href="/blog"
+                        className="text-white hover:text-primary transition-colors font-medium"
+                    >
+                        Blog
+                    </Link>
+                    <Link
+                        href="/galeria"
+                        className="text-white hover:text-primary transition-colors font-medium"
+                    >
+                        Galeria
+                    </Link>
+                    <Link
+                        href="#contato"
+                        className="text-white hover:text-primary transition-colors font-medium"
+                    >
+                        Contato
+                    </Link>
+                </nav>
+
+                {/* CTA Button */}
+                <div className="flex items-center gap-4">
+                    <Button
+                        size="lg"
+                        className="bg-primary hover:bg-primary-600 text-dark-300 font-semibold hidden sm:flex"
+                    >
+                        Agendar Avaliação
+                    </Button>
                 </div>
             </div>
         </header>

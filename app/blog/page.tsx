@@ -1,7 +1,8 @@
-import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from "next/link"
 import { formatDate } from "@/lib/utils"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 export default async function BlogPage() {
     const supabase = await createClient()
@@ -12,44 +13,57 @@ export default async function BlogPage() {
         .order("created_at", { ascending: false })
 
     return (
-        <div className="container py-8 md:py-12 lg:py-24">
-            <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
+        <div className="container py-8 md:py-12 lg:py-16">
+            <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8 mb-12">
                 <div className="flex-1 space-y-4">
-                    <h1 className="inline-block font-heading text-4xl tracking-tight lg:text-5xl">
-                        Blog
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+                        <span className="text-primary">Blog</span> <span className="text-white">PDR Expert</span>
                     </h1>
-                    <p className="text-xl text-muted-foreground">
-                        Dicas, tutoriais e novidades sobre o mundo do Martelinho de Ouro.
+                    <p className="text-lg text-white/70 max-w-2xl">
+                        Dicas, técnicas e informações sobre PDR (Paintless Dent Repair) e cuidados automotivos.
                     </p>
                 </div>
             </div>
-            <hr className="my-8" />
-            {posts?.length ? (
-                <div className="grid gap-10 sm:grid-cols-2">
-                    {posts.map((post: any) => (
-                        <article key={post.id} className="group relative flex flex-col space-y-2">
+
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {posts?.map((post) => (
+                    <Link key={post.id} href={`/blog/${post.slug}`}>
+                        <Card className="h-full bg-dark-50 border-dark-100 hover:border-primary transition-all hover:shadow-lg hover:shadow-primary/20">
                             {post.cover_image && (
-                                <img
-                                    src={post.cover_image}
-                                    alt={post.title}
-                                    className="rounded-md border bg-muted transition-colors"
-                                />
+                                <div className="aspect-video bg-dark-200 rounded-t-lg overflow-hidden">
+                                    <div className="w-full h-full flex items-center justify-center text-white/30">
+                                        [Imagem do Post]
+                                    </div>
+                                </div>
                             )}
-                            <h2 className="text-2xl font-extrabold">{post.title}</h2>
-                            {post.description && (
-                                <p className="text-muted-foreground">{post.description}</p>
-                            )}
-                            <Link href={`/blog/${post.slug}`} className="absolute inset-0">
-                                <span className="sr-only">Ver artigo</span>
-                            </Link>
-                            <p className="text-sm text-muted-foreground">
-                                {formatDate(post.created_at)}
-                            </p>
-                        </article>
-                    ))}
+                            <CardHeader>
+                                <CardTitle className="text-white hover:text-primary transition-colors">
+                                    {post.title}
+                                </CardTitle>
+                                <CardDescription className="text-white/60">
+                                    {formatDate(post.created_at)}
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-white/70 line-clamp-3">
+                                    {post.description || ""}
+                                </p>
+                                <Button
+                                    variant="ghost"
+                                    className="mt-4 text-primary hover:text-primary hover:bg-primary/10 p-0"
+                                >
+                                    Ler mais →
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                ))}
+            </div>
+
+            {!posts || posts.length === 0 && (
+                <div className="text-center py-12">
+                    <p className="text-white/50 text-lg">Nenhum post publicado ainda.</p>
                 </div>
-            ) : (
-                <p>Nenhum post encontrado.</p>
             )}
         </div>
     )
