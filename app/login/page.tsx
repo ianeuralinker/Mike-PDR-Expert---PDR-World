@@ -15,6 +15,11 @@ export default function LoginPage() {
     const router = useRouter()
     const supabase = createClient()
 
+    // Debug: Check if env vars are loaded
+    console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL ? "Loaded" : "Missing")
+    console.log("Supabase URL Value (partial):", process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 10) + "...")
+
+
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
