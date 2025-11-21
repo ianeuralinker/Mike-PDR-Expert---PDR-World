@@ -4,6 +4,7 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
+import { Toaster } from "sonner"
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
                     <div className="flex-1">{children}</div>
                     <SiteFooter />
                 </div>
+                <Toaster />
             </body>
         </html>
     )
