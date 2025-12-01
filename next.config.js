@@ -22,7 +22,7 @@ const nextConfig = {
     return [
       {
         source: '/supabase/:path*',
-        destination: process.env.NEXT_PUBLIC_SUPABASE_URL + '/:path*',
+        destination: 'http://supabase-kong:8000/:path*',
       },
     ]
   },
