@@ -1,138 +1,120 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { Play, ChevronLeft, ChevronRight } from "lucide-react"
 
-const slides = [
+const SLIDES = [
     {
-        title: "Restauração de Amassados sem Pintura",
-        subtitle: "PDR - Paintless Dent Repair",
-        description: "Tecnologia de ponta para reparos perfeitos preservando a pintura original",
-        cta: "Saiba Mais",
-        image: "/slides/slide1.jpg"
+        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop",
+        title: "Conquiste Sua Carreira Com os Melhores Treinamentos",
+        subtitle: "Encontre treinamentos baseados no seu nível de proficiência."
     },
     {
-        title: "Resultados Profissionais Garantidos",
-        subtitle: "20% DE DESCONTO",
-        description: "Expertise comprovada em restauração de veículos de luxo",
-        cta: "Agendar Avaliação",
-        image: "/slides/slide2.jpg"
+        image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop",
+        title: "Prepare-se Para o Futuro Automotivo",
+        subtitle: "Garanta sua carreira com as técnicas mais avançadas de PDR."
     },
     {
-        title: "Preserve o Valor do Seu Veículo",
-        subtitle: "Processo Sustentável e Rápido",
-        description: "Sem uso de produtos químicos, mantendo a garantia de fábrica",
-        cta: "Ver Galeria",
-        image: "/slides/slide3.jpg"
+        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
+        title: "Transforme Sua Paixão em Profissão",
+        subtitle: "Aprenda com os melhores especialistas da indústria automotiva."
     }
 ]
 
 export function HeroSlideshow() {
     const [currentSlide, setCurrentSlide] = useState(0)
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-
-    useEffect(() => {
-        if (!isAutoPlaying) return
-
-        const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % slides.length)
-        }, 5000)
-
-        return () => clearInterval(interval)
-    }, [isAutoPlaying])
 
     const nextSlide = () => {
-        setIsAutoPlaying(false)
-        setCurrentSlide((prev) => (prev + 1) % slides.length)
+        setCurrentSlide((prev) => (prev + 1) % SLIDES.length)
     }
 
     const prevSlide = () => {
-        setIsAutoPlaying(false)
-        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+        setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length)
     }
 
-    const goToSlide = (index: number) => {
-        setIsAutoPlaying(false)
-        setCurrentSlide(index)
-    }
+    // Auto-advance slides
+    useEffect(() => {
+        const timer = setInterval(nextSlide, 5000)
+        return () => clearInterval(timer)
+    }, [])
 
     return (
-        <div className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden bg-dark-300">
-            {/* Slides */}
-            <div className="relative w-full h-full">
-                {slides.map((slide, index) => (
-                    <div
-                        key={index}
-                        className={`absolute inset-0 transition-opacity duration-700 ${index === currentSlide ? "opacity-100" : "opacity-0"
-                            }`}
-                    >
-                        {/* Background gradient overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-dark-300 via-dark-300/80 to-transparent z-10" />
+        <section className="relative w-full h-[600px] lg:h-[700px] overflow-hidden">
+            {/* Background Images with Overlay */}
+            {SLIDES.map((slide, index) => (
+                <div
+                    key={index}
+                    className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"
+                        }`}
+                >
+                    <Image
+                        src={slide.image}
+                        alt={slide.title}
+                        fill
+                        className="object-cover"
+                        priority={index === 0}
+                    />
+                    {/* Dark Overlay */}
+                    <div className="absolute inset-0 bg-black/60" />
+                </div>
+            ))}
 
-                        {/* Background pattern (simulating car image area) */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-dark-200 to-dark-400" />
+            {/* Content */}
+            <div className="container relative z-10 h-full flex items-center">
+                <div className="max-w-3xl">
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 animate-fade-in">
+                        {SLIDES[currentSlide].title}
+                    </h1>
 
-                        {/* Content */}
-                        <div className="relative z-20 container mx-auto h-full flex items-center">
-                            <div className="max-w-2xl space-y-6 animate-fade-in">
-                                <p className="text-white/80 text-sm md:text-base uppercase tracking-wider">
-                                    {slide.subtitle}
-                                </p>
+                    <p className="text-lg md:text-xl text-white/90 mb-8 max-w-xl">
+                        {SLIDES[currentSlide].subtitle}
+                    </p>
 
-                                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
-                                    <span className="text-primary">{slide.title.split(' ')[0]}</span>
-                                    <br />
-                                    <span className="text-white">{slide.title.split(' ').slice(1).join(' ')}</span>
-                                </h1>
+                    <div className="flex items-center gap-4">
+                        <Button
+                            size="lg"
+                            className="bg-primary hover:bg-primary/90 text-dark-500 font-bold text-base px-8 h-12 rounded-md"
+                        >
+                            Explorar Cursos →
+                        </Button>
 
-                                <p className="text-white/90 text-base md:text-lg max-w-lg">
-                                    {slide.description}
-                                </p>
-
-                                <Button
-                                    size="lg"
-                                    className="bg-primary hover:bg-primary-600 text-dark-300 font-semibold px-8 py-6 text-lg"
-                                >
-                                    {slide.cta}
-                                </Button>
-                            </div>
-                        </div>
+                        <button className="h-14 w-14 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all group">
+                            <Play className="h-6 w-6 ml-1 fill-current" />
+                        </button>
                     </div>
-                ))}
+                </div>
             </div>
 
             {/* Navigation Arrows */}
             <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-primary/20 hover:bg-primary/40 backdrop-blur-sm p-3 rounded-full transition-all"
-                aria-label="Previous slide"
+                className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded bg-primary hover:bg-primary/90 text-dark-500 flex items-center justify-center transition-all"
             >
-                <ChevronLeft className="w-6 h-6 text-white" />
+                <ChevronLeft className="h-6 w-6" />
             </button>
 
             <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-primary/20 hover:bg-primary/40 backdrop-blur-sm p-3 rounded-full transition-all"
-                aria-label="Next slide"
+                className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded bg-primary hover:bg-primary/90 text-dark-500 flex items-center justify-center transition-all"
             >
-                <ChevronRight className="w-6 h-6 text-white" />
+                <ChevronRight className="h-6 w-6" />
             </button>
 
-            {/* Dots Indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
-                {slides.map((_, index) => (
+            {/* Slide Indicators */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                {SLIDES.map((_, index) => (
                     <button
                         key={index}
-                        onClick={() => goToSlide(index)}
-                        className={`transition-all rounded-full ${index === currentSlide
-                                ? "bg-primary w-12 h-3"
-                                : "bg-white/40 hover:bg-white/60 w-3 h-3"
+                        onClick={() => setCurrentSlide(index)}
+                        className={`h-2 rounded-full transition-all ${index === currentSlide
+                                ? "w-8 bg-primary"
+                                : "w-2 bg-white/50 hover:bg-primary/75"
                             }`}
-                        aria-label={`Go to slide ${index + 1}`}
                     />
                 ))}
             </div>
-        </div>
+        </section>
     )
 }

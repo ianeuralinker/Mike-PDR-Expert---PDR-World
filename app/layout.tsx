@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Orbitron, Montserrat } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { Toaster } from "sonner"
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const orbitron = Orbitron({ subsets: ['latin'], variable: '--font-orbitron' })
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' })
 
 export const metadata: Metadata = {
-    title: 'Mike PDR Expert - Martelinho de Ouro',
-    description: 'Portal de referência em Funilaria Artesanal e Martelinho de Ouro.',
+    title: 'Mike PDR Expert - Cursos Automotivos Premium',
+    description: 'Transforme sua paixão por carros em profissão com nossos cursos de Martelinho de Ouro e Estética Automotiva.',
 }
 
 export default function RootLayout({
@@ -19,8 +20,8 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="pt-BR">
-            <body className={cn(inter.variable, "min-h-screen bg-background font-sans antialiased")}>
+        <html lang="pt-BR" suppressHydrationWarning>
+            <body className={cn(montserrat.variable, orbitron.variable, "min-h-screen bg-dark-300 font-sans antialiased text-white")}>
                 <div className="relative flex min-h-screen flex-col">
                     <SiteHeader />
                     <div className="flex-1">{children}</div>

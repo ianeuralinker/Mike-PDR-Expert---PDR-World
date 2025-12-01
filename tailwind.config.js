@@ -41,13 +41,13 @@ module.exports = {
                     foreground: "#FFFFFF",
                 },
                 dark: {
-                    DEFAULT: "#0A1F1C",
-                    50: '#1A2B28',
-                    100: '#152320',
-                    200: '#0F1B18',
-                    300: '#0A1F1C',
-                    400: '#081714',
-                    500: '#06100E',
+                    DEFAULT: "#121212", // Main background
+                    50: '#2A2A2A',      // Lighter asphalt
+                    100: '#252525',
+                    200: '#1E1E1E',     // Card background
+                    300: '#121212',     // Main background
+                    400: '#0A0A0A',     // Darker asphalt
+                    500: '#000000',
                 },
                 destructive: {
                     DEFAULT: "hsl(var(--destructive))",
