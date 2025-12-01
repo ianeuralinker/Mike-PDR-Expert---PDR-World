@@ -24,6 +24,10 @@ const nextConfig = {
         source: '/supabase/:path*',
         destination: process.env.NEXT_PUBLIC_SUPABASE_URL + '/:path*',
       },
+      {
+        source: '/auth/:path*',
+        destination: process.env.NEXT_PUBLIC_SUPABASE_URL + '/auth/:path*',
+      },
     ]
   },
 };
