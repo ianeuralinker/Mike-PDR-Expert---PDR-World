@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+// Trigger deployment update
 const nextConfig = {
   // ESTA LINHA É A MAIS IMPORTANTE PARA O COOLIFY:
   output: "standalone",
