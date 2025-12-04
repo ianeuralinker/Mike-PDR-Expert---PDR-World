@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-// Trigger deployment update
 const nextConfig = {
   // ESTA LINHA É A MAIS IMPORTANTE PARA O COOLIFY:
   output: "standalone",
@@ -19,14 +18,21 @@ const nextConfig = {
     ],
   },
   async rewrites() {
+    // HARDCODED UPSTREAM URL TO PREVENT LOOP
+    const supabaseUrl = "https://supabasekong-cwsg0s4wc4kgsogsgw8ggssc.191.101.15.211.sslip.io";
+
+    console.log("---------------------------------------------------");
+    console.log("DEBUG: FORCING Proxy to:", supabaseUrl);
+    console.log("---------------------------------------------------");
+
     return [
       {
         source: '/supabase/:path*',
-        destination: process.env.NEXT_PUBLIC_SUPABASE_URL + '/:path*',
+        destination: supabaseUrl + '/:path*',
       },
       {
         source: '/auth/:path*',
-        destination: process.env.NEXT_PUBLIC_SUPABASE_URL + '/auth/:path*',
+        destination: supabaseUrl + '/auth/:path*',
       },
     ]
   },
