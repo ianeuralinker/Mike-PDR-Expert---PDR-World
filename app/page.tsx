@@ -7,10 +7,14 @@ import { StatsSection } from "@/components/stats-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { NewsletterForm } from "@/components/newsletter-form"
 
+import { BrandCarousel } from "@/components/brand-carousel"
+
 export default function Home() {
     return (
         <div className="flex min-h-screen flex-col bg-dark-300">
             <HeroSlideshow />
+
+            <BrandCarousel />
 
             <StatsSection />
 

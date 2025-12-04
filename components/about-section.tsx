@@ -11,8 +11,8 @@ export function AboutSection() {
                         <div className="relative aspect-square w-full max-w-lg mx-auto">
                             <div className="absolute -inset-4 bg-primary/20 rounded-full blur-3xl" />
                             <Image
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
-                                alt="Sobre Nós"
+                                src="/mike-profile.png"
+                                alt="Mike PDR Expert"
                                 fill
                                 className="object-cover rounded-full border-8 border-dark-300 relative z-10"
                             />
@@ -20,8 +20,8 @@ export function AboutSection() {
                             {/* Orbital Badge */}
                             <div className="absolute top-0 right-0 bg-dark-400 p-6 rounded-2xl border border-white/10 shadow-xl z-20">
                                 <div className="text-center">
-                                    <span className="block text-4xl font-bold text-primary">15+</span>
-                                    <span className="text-sm text-gray-400 uppercase tracking-wider">Anos de<br />História</span>
+                                    <span className="block text-4xl font-bold text-primary">+6</span>
+                                    <span className="text-sm text-gray-400 uppercase tracking-wider">Anos de<br />Exp. EUA</span>
                                 </div>
                             </div>
                         </div>
@@ -70,6 +70,16 @@ export function AboutSection() {
                                 <div>
                                     <h4 className="text-white font-bold text-lg">Material</h4>
                                     <p className="text-sm text-gray-500">Apostilas e vídeos HD</p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4">
+                                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <CheckCircle2 className="h-6 w-6 text-primary" />
+                                </div>
+                                <div>
+                                    <h4 className="text-white font-bold text-lg">Especialista</h4>
+                                    <p className="text-sm text-gray-500">Amassados de rua e Granizo</p>
                                 </div>
                             </div>
                         </div>
