@@ -11,8 +11,10 @@ export async function GET(request: NextRequest) {
 
     if (code) {
         const cookieStore = await cookies()
+        console.log("Auth Callback Cookies:", cookieStore.getAll().map(c => c.name))
         const supabase = createServerClient(
-            process.env.NEXT_PUBLIC_SUPABASE_URL!,
+            // Use the public proxy URL to ensure the cookie name matches what the browser set
+            "https://mikepdrexpert.com/supabase",
             process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
             {
                 cookies: {
